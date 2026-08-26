@@ -1,0 +1,7 @@
+{
+  "name": "Food Journey",
+  "description": "Deine Tagesreise durch Essen, Energie und Gewohnheiten. Spielerische, achtsame Tagesreflexion mit Fuchs-Maskottchen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
