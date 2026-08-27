@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "today": "Today",
+    "moments": "Moments",
+    "insights": "Insights",
+    "calendar": "Calendar",
+    "profile": "Profile"
+  },
+  "header": {
+    "streak": "Daily streak",
+    "coach": "Coach",
+    "openCoach": "Open coach area",
+    "login": "Login"
+  },
+  "language": {
+    "select": "Language",
+    "de": "German",
+    "en": "English",
+    "fr": "French",
+    "ar": "Arabic"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "logout": "Log out"
+  }
+}
