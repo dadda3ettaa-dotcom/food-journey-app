@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Home,
   Clock,
@@ -10,6 +11,7 @@ import {
   Plus
 } from 'lucide-react';
 import { User as FirebaseUser } from 'firebase/auth';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export type NavTab = 'heute' | 'reise' | 'verlauf' | 'insights' | 'profil';
 
@@ -36,14 +38,15 @@ export const Navigation: React.FC<NavigationProps> = ({
   onOpenCoachView,
   isCoachViewOpen
 }) => {
-  const tabs = [
-    { id: 'heute' as NavTab, label: 'Heute', icon: Home },
-    { id: 'reise' as NavTab, label: 'Momente', icon: Clock },
-    { id: 'insights' as NavTab, label: 'Insights', icon: BarChart3 },
-    { id: 'verlauf' as NavTab, label: 'Kalender', icon: Calendar },
-    { id: 'profil' as NavTab, label: 'Profil', icon: UserIcon }
-  ];
+  const { t } = useTranslation();
 
+  const tabs = [
+    { id: 'heute' as NavTab, label: t('nav.today'), icon: Home },
+    { id: 'reise' as NavTab, label: t('nav.moments'), icon: Clock },
+    { id: 'insights' as NavTab, label: t('nav.insights'), icon: BarChart3 },
+    { id: 'verlauf' as NavTab, label: t('nav.calendar'), icon: Calendar },
+    { id: 'profil' as NavTab, label: t('nav.profile'), icon: UserIcon }
+  ];
   return (
     <>
       {/* Top Header Bar */}
@@ -62,20 +65,20 @@ export const Navigation: React.FC<NavigationProps> = ({
               Food<span className="text-amber-700">Journey</span>
             </span>
           </button>
-
           {/* Right Header Action Icons */}
           <div className="flex items-center gap-2.5">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
             {/* Streak Flame */}
             <button
               type="button"
               onClick={() => onTabChange('verlauf')}
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs font-bold hover:bg-amber-100/70 transition-colors"
-              title="Tages-Streak"
+              title={t('header.streak')}
             >
               <Flame className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
               <span>{streakDays}d</span>
             </button>
-
             {/* Coach View Toggle */}
             {onOpenCoachView && (
               <button
@@ -87,13 +90,12 @@ export const Navigation: React.FC<NavigationProps> = ({
                     ? 'bg-stone-900 text-white shadow-xs'
                     : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
                 }`}
-                title="Coach-Bereich öffnen"
+                title={t('header.openCoach')}
               >
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Coach</span>
+                <span className="hidden sm:inline">{t('header.coach')}</span>
               </button>
             )}
-
             {/* Auth / Avatar */}
             {currentUser ? (
               <button
@@ -101,7 +103,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 id="header-user-profile-btn"
                 onClick={() => onTabChange('profil')}
                 className="w-8 h-8 rounded-full bg-stone-900 text-white flex items-center justify-center font-bold text-xs hover:bg-black transition-all"
-                title={currentUser.displayName || currentUser.email || 'Profil'}
+                title={currentUser.displayName || currentUser.email || t('nav.profile')}
               >
                 {currentUser.displayName ? currentUser.displayName[0].toUpperCase() : 'U'}
               </button>
@@ -112,13 +114,12 @@ export const Navigation: React.FC<NavigationProps> = ({
                 onClick={onOpenAuth}
                 className="px-3.5 py-1 rounded-full bg-stone-900 hover:bg-black text-white text-xs font-semibold transition-all shadow-xs"
               >
-                Login
+                {t('header.login')}
               </button>
             ) : null}
           </div>
         </div>
       </header>
-
       {/* Mobile & Desktop Clean Bottom Navigation Bar */}
       <nav
         className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-stone-200/80 px-2 py-1.5"
@@ -128,7 +129,6 @@ export const Navigation: React.FC<NavigationProps> = ({
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
-
             return (
               <button
                 key={tab.id}
@@ -159,6 +159,3 @@ export const Navigation: React.FC<NavigationProps> = ({
     </>
   );
 };
-
-
-
