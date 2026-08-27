@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "today": "Aujourd'hui",
+    "moments": "Moments",
+    "insights": "Aperçus",
+    "calendar": "Calendrier",
+    "profile": "Profil"
+  },
+  "header": {
+    "streak": "Série quotidienne",
+    "coach": "Coach",
+    "openCoach": "Ouvrir l'espace coach",
+    "login": "Connexion"
+  },
+  "language": {
+    "select": "Langue",
+    "de": "Allemand",
+    "en": "Anglais",
+    "fr": "Français",
+    "ar": "Arabe"
+  },
+  "common": {
+    "back": "Retour",
+    "next": "Suivant",
+    "skip": "Passer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "logout": "Déconnexion"
+  }
+}
